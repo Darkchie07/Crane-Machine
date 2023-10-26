@@ -50,17 +50,9 @@ public class ClawHand : MonoBehaviour
             case stateClaw.CloseState:
                 StartCoroutine(GrabbingObject());
                 isMoveable = false;
-                if (isDoneMove)
-                {
-                    currentMode = stateClaw.RisingState;
-                }
                 break;
             case stateClaw.RisingState:
-                BackToDefault();
-                if (isBacktoDefault)
-                {
-                    currentMode = stateClaw.OpenState;
-                }
+                StartCoroutine(ClawUp());
                 break;
         }
         
@@ -103,32 +95,63 @@ public class ClawHand : MonoBehaviour
             else if (Input.GetKey(KeyCode.Space))
             {
                 clawAnimation.SetTrigger("Open");
-                currentMode = stateClaw.CloseState;
+                StartCoroutine(ClawDown());
             }
         }
     }
 
     public IEnumerator GrabbingObject()
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(1f);
+        clawAnimation.ResetTrigger("Down");
         clawAnimation.SetTrigger("Close");
-        yield return new WaitForSeconds(delay);
-        isDoneMove = true;
+        yield return new WaitForSeconds(3f);
+        currentMode = stateClaw.RisingState;
+    }
+
+    public IEnumerator ClawDown()
+    {
+        yield return new WaitForSeconds(2f);
+        clawAnimation.ResetTrigger("Open");
+        clawAnimation.SetTrigger("Down");
+        yield return new WaitForSeconds(1f);
+        currentMode = stateClaw.CloseState;
+    }
+    
+    public IEnumerator ClawUp()
+    {
+        yield return new WaitForSeconds(2f);
+        clawAnimation.ResetTrigger("Close");
+        clawAnimation.SetTrigger("Up");
+        yield return new WaitForSeconds(3f);
+        BackToDefault();
+        if (rotor.transform.position.z <= limitFront && clawHands.transform.position.x <= limitLeft)
+        {
+            isBacktoDefault = true;
+            clawAnimation.ResetTrigger("Up");
+            clawAnimation.SetTrigger("Release");
+            Debug.Log("Lepas");
+        }
+        if (isBacktoDefault)
+        {
+            isBacktoDefault = false;
+            yield return new WaitForSeconds(2f);
+            clawAnimation.ResetTrigger("Release");
+            clawAnimation.SetTrigger("Close");
+            currentMode = stateClaw.OpenState;
+        }
     }
 
     public void BackToDefault()
     {
         if (rotor.transform.position.z >= limitFront)
         {
-            rotor.transform.Translate(0, 0, limitFront * Time.deltaTime);
-            clawHands.transform.Translate(0, 0, limitFront * Time.deltaTime);
+            rotor.transform.Translate(0, 0, limitFront * Time.deltaTime * 0.15f);
+            clawHands.transform.Translate(0, 0, limitFront * Time.deltaTime * 0.15f);
         }
         else if (clawHands.transform.position.x >= limitLeft)
         {
-            clawHands.transform.Translate(limitLeft * Time.deltaTime, 0, 0);
-        }else if (rotor.transform.position.z <= limitFront && clawHands.transform.position.x <= limitLeft)
-        {
-            isBacktoDefault= true; 
+            clawHands.transform.Translate(limitLeft * Time.deltaTime * 0.25f, 0, 0);
         }
     }
 }
