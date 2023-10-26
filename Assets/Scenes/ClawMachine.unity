@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1072,6 +1072,8 @@ MonoBehaviour:
   currentMode: 0
   clawAnimation: {fileID: 228139067}
   isMoveable: 0
+  isDoneMove: 0
+  isBacktoDefault: 0
   rotor: {fileID: 945688943}
   clawHands: {fileID: 228139065}
   limitLeft: -1.8
@@ -1079,6 +1081,7 @@ MonoBehaviour:
   limitFront: -5.5
   limitBack: -1.5
   speed: 10
+  delay: 5
 --- !u!4 &780025196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5b3b7722439eb4d41900ab440135aec4, type: 3}
@@ -1766,6 +1769,8 @@ MonoBehaviour:
   currentMode: 0
   clawAnimation: {fileID: 1138499534}
   isMoveable: 0
+  isDoneMove: 0
+  isBacktoDefault: 0
   rotor: {fileID: 0}
   clawHands: {fileID: 0}
   limitLeft: 0
@@ -1773,6 +1778,7 @@ MonoBehaviour:
   limitFront: 0
   limitBack: 0
   speed: 0
+  delay: 0
 --- !u!64 &1138499533
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2113,6 +2119,10 @@ PrefabInstance:
     - target: {fileID: 100034, guid: baa4b873dfb5e364d83fff22e324ab56, type: 3}
       propertyPath: m_Name
       value: ClawRiggAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 100034, guid: baa4b873dfb5e364d83fff22e324ab56, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: baa4b873dfb5e364d83fff22e324ab56, type: 3}
       propertyPath: m_RootOrder
