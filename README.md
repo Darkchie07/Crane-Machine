@@ -9,8 +9,8 @@ This Crane Machine use only physics from unity (Rigidbody and Collider), and som
 
 ## Gameplay images
 
-![Image Caption](../GameplayImages/Gameplay(1).jpeg)
-![Image Caption](../GameplayImages/Gameplay(2).jpeg)
-![Image Caption](../GameplayImages/Gameplay(3).jpeg)
-![Image Caption](../GameplayImages/Gameplay(4).jpeg)
-![Image Caption](../GameplayImages/Gameplay(5).jpeg)
+![Image Caption](GameplayImages/Gameplay(1).jpeg)
+![Image Caption](GameplayImages/Gameplay(2).jpeg)
+![Image Caption](GameplayImages/Gameplay(3).jpeg)
+![Image Caption](GameplayImages/Gameplay(4).jpeg)
+![Image Caption](GameplayImages/Gameplay(5).jpeg)
